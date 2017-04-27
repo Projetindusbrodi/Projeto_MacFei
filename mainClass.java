@@ -3,12 +3,18 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
+
 import java.awt.Window.Type;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTabbedPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class mainClass extends JFrame {
 	private JTextField txtUser;
@@ -32,6 +38,18 @@ public class mainClass extends JFrame {
         getContentPane().add(lblSenha);
         
         JButton btnLogin = new JButton("Login");
+        btnLogin.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try {
+					Pedidos p = new Pedidos();
+					p.setTitle("Pedidos");
+					p.show();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        });
         btnLogin.setBounds(77, 131, 89, 23);
         getContentPane().add(btnLogin);
         

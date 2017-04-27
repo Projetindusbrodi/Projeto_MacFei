@@ -10,7 +10,7 @@ public class CLassBD {
 	    public static Statement statement = null;
 	    public static ResultSet resultSet = null; 
 	    public static final String DRIVER   = "com.mysql.jdbc.Driver";
-	    static final String URL      = "jdbc:mysql://localhost:8080/projetcdb";
+	    static final String URL      = "jdbc:mysql://localhost:3306/projetcdb";
 	    /** 
 	     * método que faz conexão com o banco de dados
 	     * retorna true se houve sucesso, ou false em caso negativo
@@ -20,7 +20,10 @@ public class CLassBD {
 	       try
 	       {
 	    	   Class.forName(DRIVER);
-	    	   Connection connection = DriverManager.getConnection(URL,"root","mark");
+	    	   //Connection connection = DriverManager.getConnection(URL,"root","mark");
+	    	   //mysql -u root mysql
+	    	   //UPDATE user set Password = Password('nova senha') where user='root'
+	    	   Connection connection = DriverManager.getConnection(URL,"root","Ab!?123FEI2015");
 	    	   statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 	          return true;
 	       }
