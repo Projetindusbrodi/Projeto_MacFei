@@ -8,13 +8,16 @@ public class CLassBD {
 
 	 public static Connection connection = null;
 	    public static Statement statement = null;
-	    public static ResultSet resultSet = null; 
+	    public static ResultSet resultSet = null;
 	    public static final String DRIVER   = "com.mysql.jdbc.Driver";
 	    static final String URL      = "jdbc:mysql://localhost:3306/projetcdb";
-	    /** 
-	     * método que faz conexão com o banco de dados
+	    /**
+	     * mï¿½todo que faz conexï¿½o com o banco de dados
 	     * retorna true se houve sucesso, ou false em caso negativo
 	     */
+
+
+			 
 	    public static boolean getConnection()
 	    {
 	       try
@@ -38,7 +41,7 @@ public class CLassBD {
 	          return false;
 	       }
 	    }
-	    
+
 	    /**
 	     * Fecha ResultSet, Statement e Connection
 	     */
@@ -46,9 +49,9 @@ public class CLassBD {
 	    {
 		   closeResultSet();
 		   closeStatement();
-		   closeConnection();	
+		   closeConnection();
 		}
-		
+
 		private static void closeConnection()
 		{
 		   try
@@ -59,8 +62,8 @@ public class CLassBD {
 		   catch(SQLException erro)
 		   {
 		      erro.printStackTrace();
-		   } 
-		}  
+		   }
+		}
 
 		private static void closeStatement()
 		{
@@ -85,7 +88,7 @@ public class CLassBD {
 	          e.printStackTrace();
 		   }
 		}
-	    
+
 	    /**
 	     * Carrega o resultSet com o resultado do script SQL
 	     */
@@ -98,16 +101,16 @@ public class CLassBD {
 	       catch(SQLException erro)
 	       {
 	          erro.printStackTrace();
-	       } 
-	    }  
+	       }
+	    }
 
 	    /**
-	     * Executa um script SQL de atualização
+	     * Executa um script SQL de atualizaï¿½ï¿½o
 	     * retorna um valor inteiro contendo a quantidade de linhas afetadas
 	     */
 	    public static int runSQL(String sql)
 	    {
-		   int quant = 0; 
+		   int quant = 0;
 		   try
 		   {
 			  quant = statement.executeUpdate(sql);
@@ -115,8 +118,8 @@ public class CLassBD {
 		   catch(SQLException erro)
 		   {
 		   	  erro.printStackTrace();
-		   } 
+		   }
 	       return quant;
-		}  
-	
+		}
+
 }
