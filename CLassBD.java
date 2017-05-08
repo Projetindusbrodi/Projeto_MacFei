@@ -1,32 +1,27 @@
+package Projeto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CLassBD {
+public class ClassBD {
 
 	 public static Connection connection = null;
 	    public static Statement statement = null;
-	    public static ResultSet resultSet = null;
+	    public static ResultSet resultSet = null; 
 	    public static final String DRIVER   = "com.mysql.jdbc.Driver";
 	    static final String URL      = "jdbc:mysql://localhost:3306/projetcdb";
-	    /**
-	     * mï¿½todo que faz conexï¿½o com o banco de dados
+	    /** 
+	     * método que faz conexão com o banco de dados
 	     * retorna true se houve sucesso, ou false em caso negativo
 	     */
-
-
-			 
 	    public static boolean getConnection()
 	    {
 	       try
 	       {
 	    	   Class.forName(DRIVER);
-	    	   //Connection connection = DriverManager.getConnection(URL,"root","mark");
-	    	   //mysql -u root mysql
-	    	   //UPDATE user set Password = Password('nova senha') where user='root'
-	    	   Connection connection = DriverManager.getConnection(URL,"root","Ab!?123FEI2015");
+	    	   Connection connection = DriverManager.getConnection(URL,"root","");
 	    	   statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 	          return true;
 	       }
@@ -41,7 +36,7 @@ public class CLassBD {
 	          return false;
 	       }
 	    }
-
+	    
 	    /**
 	     * Fecha ResultSet, Statement e Connection
 	     */
@@ -49,9 +44,9 @@ public class CLassBD {
 	    {
 		   closeResultSet();
 		   closeStatement();
-		   closeConnection();
+		   closeConnection();	
 		}
-
+		
 		private static void closeConnection()
 		{
 		   try
@@ -62,8 +57,8 @@ public class CLassBD {
 		   catch(SQLException erro)
 		   {
 		      erro.printStackTrace();
-		   }
-		}
+		   } 
+		}  
 
 		private static void closeStatement()
 		{
@@ -88,7 +83,7 @@ public class CLassBD {
 	          e.printStackTrace();
 		   }
 		}
-
+	    
 	    /**
 	     * Carrega o resultSet com o resultado do script SQL
 	     */
@@ -101,16 +96,16 @@ public class CLassBD {
 	       catch(SQLException erro)
 	       {
 	          erro.printStackTrace();
-	       }
-	    }
+	       } 
+	    }  
 
 	    /**
-	     * Executa um script SQL de atualizaï¿½ï¿½o
+	     * Executa um script SQL de atualização
 	     * retorna um valor inteiro contendo a quantidade de linhas afetadas
 	     */
 	    public static int runSQL(String sql)
 	    {
-		   int quant = 0;
+		   int quant = 0; 
 		   try
 		   {
 			  quant = statement.executeUpdate(sql);
@@ -118,8 +113,8 @@ public class CLassBD {
 		   catch(SQLException erro)
 		   {
 		   	  erro.printStackTrace();
-		   }
+		   } 
 	       return quant;
-		}
-
+		}  
+	
 }

@@ -1,32 +1,28 @@
+package Projeto;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JRootPane;
-
-import java.awt.Window.Type;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JTabbedPane;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.sql.SQLException;
+import Test.MainFrame;
+
+
 
 public class mainClass extends JFrame {
 	private JTextField txtUser;
 	private JTextField txtPassw;
 	
 	
-
 	public mainClass() {
-		CLassBD BD = new CLassBD();
+		ClassBD BD = new ClassBD();
 		
 		setTitle("Acesso");
-        //setResizable(true);
+        setResizable(true);
         getContentPane().setLayout(null);
         
         JLabel lblUser = new JLabel("Usu\u00E1rio:");
@@ -38,18 +34,6 @@ public class mainClass extends JFrame {
         getContentPane().add(lblSenha);
         
         JButton btnLogin = new JButton("Login");
-        btnLogin.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		try {
-					Pedidos p = new Pedidos();
-					p.setTitle("Pedidos");
-					p.show();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        	}
-        });
         btnLogin.setBounds(77, 131, 89, 23);
         getContentPane().add(btnLogin);
         
@@ -64,21 +48,28 @@ public class mainClass extends JFrame {
         getContentPane().add(txtPassw);
 		setType(Type.UTILITY);
 		
-		if(!BD.getConnection()){
+		if(!ClassBD.getConnection()){
 			  JOptionPane.showMessageDialog(null,
 					  "Falha na conexão, o sistema será fechado!");	
 			  System.exit(EXIT_ON_CLOSE);
 			}
-			//BD.setResultSet("Select * from tabmedia");
-			}
+	}
 
-	
-
-	public static void main(String[] args) {
-		mainClass janela= new mainClass();
+	public static void main(String[] args)  {
+		
+		
+		MainFrame janela = null;
+		
+		try {
+			janela = new MainFrame();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*mainClass janela= new mainClass();*/
+		
 		Dimension tela=Toolkit.getDefaultToolkit().getScreenSize();
 		janela.setLocation((tela.width-janela.getSize().width)/2,
 				(tela.height-janela.getSize().height)/2);
 		janela.setVisible(true);
-	}
-}
+	}}
